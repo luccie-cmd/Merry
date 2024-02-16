@@ -2,6 +2,7 @@ all_insts:
     nop ; 0
     jmp next ; 1 jmp 2
 next:
+    add Mb, 1
     add Ma, Mb ; 3
     add Ma, 69 ; 4
     sub Ma, Mb ; 5

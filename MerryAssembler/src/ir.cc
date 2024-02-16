@@ -113,7 +113,6 @@ void merry::back_end::IrGen::convert_astnode_to_inst(){
                 // Setting lower 4 bits
                 registers = (registers & 0xF0) | (lower_4_bits_to_set & 0x0F);
 
-                inst.add_operand(registers);
                 const char *str = current_node.get_operands().at(1).c_str();
                 char* endptr;
                 uint32_t value = strtol(str, &endptr, 10);
@@ -156,7 +155,6 @@ void merry::back_end::IrGen::convert_astnode_to_inst(){
                 // Setting lower 4 bits
                 registers = (registers & 0xF0) | (lower_4_bits_to_set & 0x0F);
 
-                inst.add_operand(registers);
                 const char *str = current_node.get_operands().at(1).c_str();
                 char* endptr;
                 uint32_t value = strtol(str, &endptr, 10);
@@ -199,7 +197,6 @@ void merry::back_end::IrGen::convert_astnode_to_inst(){
                 // Setting lower 4 bits
                 registers = (registers & 0xF0) | (lower_4_bits_to_set & 0x0F);
 
-                inst.add_operand(registers);
                 const char *str = current_node.get_operands().at(1).c_str();
                 char* endptr;
                 uint32_t value = strtol(str, &endptr, 10);
@@ -242,7 +239,6 @@ void merry::back_end::IrGen::convert_astnode_to_inst(){
                 // Setting lower 4 bits
                 registers = (registers & 0xF0) | (lower_4_bits_to_set & 0x0F);
 
-                inst.add_operand(registers);
                 const char *str = current_node.get_operands().at(1).c_str();
                 char* endptr;
                 uint32_t value = strtol(str, &endptr, 10);

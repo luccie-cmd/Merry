@@ -32,12 +32,18 @@ namespace front_end{
                 std::cout << "No label found with name: " << name << "!!!\n";
                 exit(1);
             }
+            void check_operand_size(AstNodeInst inst);
         public:
             Sema(Ast ast) :in_ast(ast) { insts_size = 0; }
             AstNodeInst resolve_inst_imm_or_reg(AstNodeInst inst);
             AstNodeLabel resolve_label_addr(AstNodeLabel label);
             Ast resolve_ast(){
                 std::vector<std::variant<AstNodeInst, AstNodeLabel>> insts = in_ast.get_insts();
+                for(auto inst : insts){
+                    if(inst.index() == 0){
+                        check_operand_size(std::get<AstNodeInst>(inst));
+                    }
+                }
                 for(size_t i = 0; i < insts.size(); ++i){
                     std::variant<AstNodeInst, AstNodeLabel> inst = insts[i];
                     if(inst.index() == 0){

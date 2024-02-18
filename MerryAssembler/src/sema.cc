@@ -28,6 +28,31 @@ std::vector<merry::front_end::AstInstType> first_op_has_register = {
     merry::front_end::AstInstType::MOD,
 };
 
+std::vector<std::pair<merry::front_end::AstInstType, std::size_t>> N_operands_in_inst = {
+    {merry::front_end::AstInstType::NOP, 0},
+    {merry::front_end::AstInstType::HLT, 0},
+    {merry::front_end::AstInstType::ADD, 2},
+    {merry::front_end::AstInstType::SUB, 2},
+    {merry::front_end::AstInstType::MUL, 2},
+    {merry::front_end::AstInstType::DIV, 2},
+    {merry::front_end::AstInstType::MOD, 2},
+    {merry::front_end::AstInstType::JMP, 1},
+    {merry::front_end::AstInstType::CALL, 1},
+    {merry::front_end::AstInstType::RET, 0},
+    {merry::front_end::AstInstType::OUTR, 0},
+    {merry::front_end::AstInstType::UOUTR, 0},
+};
+
+void merry::front_end::Sema::check_operand_size(merry::front_end::AstNodeInst inst){
+    for(std::pair<merry::front_end::AstInstType, std::size_t> type : N_operands_in_inst){
+        if(type.first == inst.get_inst_type()){
+            if(type.second != inst.get_operands().size()){
+                std::cout << "ERROR: Invalid number of operands expected " << std::to_string(type.second) << " But got " << std::to_string(inst.get_operands().size()) << std::endl;
+            }
+        }
+    }
+}
+
 static int label_count = 0;
 merry::front_end::AstNodeInst merry::front_end::Sema::resolve_inst_imm_or_reg(AstNodeInst inst){
     AstNodeInst copy_inst = inst;
